@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.succedant.rest.json.customerResourcesTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 18.153 s <<< FAILURE! - in com.succedant.rest.json.customerResourcesTest
+testHelloEndpoint  Time elapsed: 0.026 s  <<< ERROR!
+org.junit.jupiter.api.extension.TestInstantiationException: TestInstanceFactory [io.quarkus.test.junit.QuarkusTestExtension] failed to instantiate test class [com.succedant.rest.json.customerResourcesTest]: Failed to start quarkus
+Caused by: java.lang.RuntimeException: Failed to start quarkus
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution
+Caused by: org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+
