@@ -18,57 +18,56 @@ import javax.ws.rs.ext.Provider;
 
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.panache.common.Sort;
 
-import com.succedant.rest.json.entity.CustomerSite;
+import com.succedant.rest.json.entity.Customer_Site;
 
-@Path("CustomerSiteSite")
+@Path("Customer_Site")
 @Produces("application/json")
 @Consumes("application/json")
 
 public class CustomerSiteResource {
 	@GET
-    public List<CustomerSite> get() {
-        return CustomerSite.listAll(Sort.by("name"));
+    public List<Customer_Site> get() {
+        return Customer_Site.listAll(Sort.by("name"));
     }
 
     @GET
     @Path("{id}")
-    public CustomerSite getSingle(@PathParam Long id) {
-        CustomerSite entity = CustomerSite.findById(id);
+    public Customer_Site getSingle(@PathParam Long id) {
+    	Customer_Site entity = Customer_Site.findById(id);
         if (entity == null) {
-            throw new WebApplicationException("CustomerSite with id of " + id + " does not exist.", 404);
+            throw new WebApplicationException("Customer_Site with id of " + id + " does not exist.", 404);
         }
         return entity;
     }
 
     @POST
     @Transactional
-    public Response create(CustomerSite CustomerSite) {
-        if (CustomerSite.id != null) {
+    public Response create(Customer_Site customer_Site) {
+        if (customer_Site.id != null) {
             throw new WebApplicationException("Id was invalidly set on request.", 422);
         }
 
-        CustomerSite.persist();
-        return Response.ok(CustomerSite).status(201).build();
+        customer_Site.persist();
+        return Response.ok(customer_Site).status(201).build();
     }
 
     @PUT
     @Path("{id}")
     @Transactional
-    public CustomerSite update(@PathParam Long id, CustomerSite CustomerSite) {
-        if (CustomerSite.name == null) {
-            throw new WebApplicationException("CustomerSite Name was not set on request.", 422);
+    public Customer_Site update(@PathParam Long id, Customer_Site customer_Site) {
+        if (customer_Site.name == null) {
+            throw new WebApplicationException("Customer_Site Name was not set on request.", 422);
         }
 
-        CustomerSite entity = PanacheEntityBase.findById(id);
+        Customer_Site entity = customer_Site.findById(id);
 
         if (entity == null) {
-            throw new WebApplicationException("CustomerSite with id of " + id + " does not exist.", 404);
+            throw new WebApplicationException("Customer_Site with id of " + id + " does not exist.", 404);
         }
 
-        entity.name = CustomerSite.name;
+        entity.name = customer_Site.name;
 
         return entity;
     }
@@ -77,9 +76,9 @@ public class CustomerSiteResource {
     @Path("{id}")
     @Transactional
     public Response delete(@PathParam Long id) {
-        CustomerSite entity = CustomerSite.findById(id);
+        Customer_Site entity = Customer_Site.findById(id);
         if (entity == null) {
-            throw new WebApplicationException("CustomerSite with id of " + id + " does not exist.", 404);
+            throw new WebApplicationException("Customer_Site with id of " + id + " does not exist.", 404);
         }
         entity.delete();
         return Response.status(204).build();

@@ -1,25 +1,27 @@
 package com.succedant.rest.json.entity;
 
-//import javax.persistence.Table;
 
 import java.sql.Date;
 
 import javax.json.bind.annotation.JsonbDateFormat;
-import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
-//@Table(name="customer")
-@Cacheable
-public class Customer extends PanacheEntity {
-
+@Table(name="customer_site")
+public class Customer_Site extends PanacheEntity {
+	
 	@Column(length = 40, unique = true)
 	public String name;
 	@Column(length = 40, unique = true)
 	public String shortName;
+	
+	@Column(unique = false)
+	private Long customer_id;
+	
 	@Column(length = 40, unique = false)
 	public String taxIdentifier;
 
@@ -76,11 +78,12 @@ public class Customer extends PanacheEntity {
 	public Boolean holdBillFlag;
 	@Column(unique = false)
 	public Boolean status;
-	
-	public Customer() {
+
+	public Customer_Site() {
+		
 	}
 
-	public Customer(String name, String shortName, String taxIdentifier, Integer flexn01, Integer flexn02,
+	public Customer_Site(String name, String shortName,Long customer_id ,String taxIdentifier, Integer flexn01, Integer flexn02,
 			Integer flexn03, Integer flexn04, Integer flexn05, String flexv01, String flexv02, String flexv03,
 			String flexv04, String flexv05, Date flexd01, Date flexd02, Date flexd03, Date flexd04, Date flexd05,
 			String createdBy, Date created, String customerType, String refoundMethod, String customerClass,
@@ -88,6 +91,7 @@ public class Customer extends PanacheEntity {
 		this.name = name;
 		this.shortName = shortName;
 		this.taxIdentifier = taxIdentifier;
+		this.customer_id = customer_id;
 
 		this.flexn01 = flexn01;
 		this.flexn02 = flexn02;
@@ -108,6 +112,7 @@ public class Customer extends PanacheEntity {
 		this.flexd05 = flexd05;
 
 		this.createdBy = createdBy;
+		
 		this.created = created;
 		this.customerType = customerType;
 		this.refoundMethod = refoundMethod;
@@ -116,5 +121,4 @@ public class Customer extends PanacheEntity {
 
 		this.status = status;
 	}
-
 }
