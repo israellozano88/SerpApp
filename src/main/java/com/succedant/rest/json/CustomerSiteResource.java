@@ -61,7 +61,7 @@ public class CustomerSiteResource {
             throw new WebApplicationException("Customer_Site Name was not set on request.", 422);
         }
 
-        Customer_Site entity = customer_Site.findById(id);
+        Customer_Site entity = Customer_Site.findById(id);
 
         if (entity == null) {
             throw new WebApplicationException("Customer_Site with id of " + id + " does not exist.", 404);
